@@ -16,6 +16,27 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
+const logger = (req,res,next)=>{
+  console.log('Inside the logger');
+  next();
+}
+const verifyToken = (req,res,next)=>{
+  console.log('Inside the verifyToken');
+  console.log(`Cookie:`, req.cookies); 
+  const token = req?.cookies?.token;
+  if(!token){
+    return res.status(401).send({message:'Unauthorized Access!'});
+  }
+  jwt.verify(token,secret,(err,decoded)=>{
+    if(err){
+      return res.status(401).send({message:'Unauthorized Access!'});
+    }
+    //
+    req.user = decoded;
+    // console.log(decoded);
+    next();
+  })
+}
 // MongoDB Starts 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@crudnodejs.33uff.mongodb.net/?retryWrites=true&w=majority&appName=crudNodeJs`;
 
@@ -203,17 +224,19 @@ async function run() {
       res.send(result);
     });
     // Using Query Url 
-    app.get('/equipmentsUser2', async (req, res) => {
+    app.get('/equipmentsUser2',logger,verifyToken, async (req, res) => {
       const { email } = req.query; 
       if (!email) {
         return res.status(400).send({ error: 'Email is required' });
       }
-    
+      if(req.user.email !== req.query.email){
+        return res.status(403).send({message:'Forbidden Access!'});
+      }
       const cursor = equipmentCollection.find({ userEmail: email });
       const result = await cursor.toArray();
     
+      console.log('Inside the API');
       console.log(`All User Equipment Fetched!`);
-      console.log(`Cookie:`, req.cookies); 
     
       res.send(result);
     });
