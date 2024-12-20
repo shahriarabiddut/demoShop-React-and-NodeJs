@@ -22,8 +22,8 @@ const logger = (req,res,next)=>{
 }
 const verifyToken = (req,res,next)=>{
   console.log('Inside the verifyToken');
-  console.log(`Cookie:`, req.cookies); 
   const token = req?.cookies?.token;
+  console.log(`Cookie:`, token); 
   if(!token){
     return res.status(401).send({message:'Unauthorized Access!'});
   }
@@ -58,6 +58,7 @@ async function run() {
     const testimonialCollection = client.db("jwttest").collection("testimonial");
     //
     // Auth Related
+    // Login Token
     app.post('/jwt',async (req,res)=>{
       const user = req.body;
       const token = jwt.sign(user, secret, { expiresIn: '1h' });
@@ -65,6 +66,15 @@ async function run() {
       .cookie('token',token,{
         httpOnly:true,
         secure:false,
+      })
+      .send({success:true});
+    })
+    // Logout Clear Token
+    app.post('/logout', async(req,res)=>{
+      res
+      .clearCookie('token',{
+        httpOnly:true,
+        secure:false
       })
       .send({success:true});
     })

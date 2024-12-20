@@ -5,7 +5,6 @@ import { FaBan, FaEye, FaGoogle } from 'react-icons/fa';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import app from '../firebase/firebase.config';
 import { AuthContext } from '../provider/AuthProvider';
-import axios from 'axios';
 
 const auth = getAuth(app);
 
@@ -34,15 +33,7 @@ const Login = () => {
             // console.log('Updated Sign in Time',data); 
             })
         //
-        //JWT TOKEN Info
-        const userData = {email : user.email}
-        axios.post('http://localhost:5000/jwt', userData,{withCredentials:true})
-          .then(function (response) {
-            console.log(response.data);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        
     }
     const handleSignInWithGoogle = ()=>{
         setError([]);
