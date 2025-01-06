@@ -3,7 +3,7 @@ import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { cssB, whiteHover } from "../utility/utility";
 
-const EquipmentHome = ({ equipment, equipments, home }) => {
+const EquipmentHome = ({ equipment, equipments, home, theme }) => {
   const {
     _id,
     image,
@@ -21,7 +21,11 @@ const EquipmentHome = ({ equipment, equipments, home }) => {
   } = equipment;
   return (
     <div className="flex flex-wrap">
-      <div className="card bg-base-100 shadow-xl flex-grow p-2 gap-3">
+      <div
+        className={`card ${
+          theme == "light" ? "bg-base-100" : "bg-gray-400 text-white"
+        }  shadow-xl flex-grow p-2 gap-3`}
+      >
         <figure>
           <img src={image} alt={itemName} className="h-72 rounded-2xl" />
         </figure>
@@ -38,12 +42,18 @@ const EquipmentHome = ({ equipment, equipments, home }) => {
             >
               {stockStatus > 0 ? " In Stock" : "Out Of Stock"}
             </p>
-            <p className="text-xl bg-gray-100 p-1 text-center rounded-xl">
+            <p
+              className={`text-xl p-1 text-center rounded-xl ${
+                theme == "light" ? "bg-gray-100" : "bg-gray-900"
+              }`}
+            >
               {category}
             </p>
           </div>
           <p className="text-xl">{description}</p>
-          <div className="divider"></div>
+          <div
+            className={`divider ${theme == "light" ? "" : "divider-neutral"}`}
+          ></div>
           <p className="text-xl text-center text-red-600 font-bold">
             $ {price}{" "}
           </p>

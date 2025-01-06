@@ -1,12 +1,12 @@
-import React from 'react';
-import Navbar from './Navbar';
+import React from "react";
+import Navbar from "./Navbar";
 
-const Header = ({toggleTheme,theme}) => {
+const Header = () => {
   return (
     <div>
-      <Navbar toggleTheme={toggleTheme} theme={theme}/>
+      <Navbar />
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

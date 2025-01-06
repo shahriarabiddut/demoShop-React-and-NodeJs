@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { SiLevelsdotfyi } from "react-icons/si";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Equipment from "../components/Equipment";
 import Loading from "../components/Loading";
 import PageSlogan from "../components/PageSlogan";
 import Pagination from "../components/Pagination";
 import { AuthContext } from "../provider/AuthProvider";
-import { activeCss, cssA, whiteHover } from "../utility/utility";
-import { FaEye } from "react-icons/fa";
+import { cssB, cssA, whiteHover } from "../utility/utility";
+import { FaEye, FaPen, FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const UserEquipments = () => {
   const { showToast, user } = useContext(AuthContext);
@@ -59,6 +60,44 @@ const UserEquipments = () => {
     (currentIndex - 1) * equipmentsPerPage,
     currentIndex * equipmentsPerPage
   );
+  const handleDeleteHere = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://pha10-server.vercel.app/equipments/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your data has been deleted.",
+                icon: "success",
+              });
+              const remainingEquipment = equipments.filter(
+                (eq) => eq._id != _id
+              );
+              setEquipments(remainingEquipment);
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: "There was something Wrong.",
+                icon: "error",
+              });
+            }
+          });
+      }
+    });
+  };
   return (
     <div className="w-11/12 mx-auto py-20 space-y-4">
       <Helmet>
@@ -76,7 +115,7 @@ const UserEquipments = () => {
             setFormat(parseInt(event.target.value, 10));
           }}
         >
-          <option disabled selected>
+          <option disabled defaultValue={"Table"}>
             Choose Format
           </option>
           <option value="0">Table</option>
@@ -92,7 +131,7 @@ const UserEquipments = () => {
               handleSort(parseInt(event.target.value, 10));
             }}
           >
-            <option disabled selected>
+            <option disabled defaultValue={"Default"}>
               Sort By Price
             </option>
             <option value="0">High To Low</option>
@@ -124,13 +163,25 @@ const UserEquipments = () => {
                     <td>{equipment.itemName}</td>
                     <td>{equipment.category}</td>
                     <td>{equipment.price}</td>
-                    <td className="flex justify-center">
-                      <NavLink
-                        to={`/equipments/${equipment._id}`}
-                        className={"btn btn-info font-rancho"}
+                    <td className="flex items-center gap-2 flex-wrap">
+                      <Link to={`/equipments/update/${equipment._id}`}>
+                        <button className={cssB + whiteHover}>
+                          <FaPen /> Update
+                        </button>
+                      </Link>
+                      <Link to={`/equipments/${equipment._id}`}>
+                        <button className={cssB + whiteHover}>
+                          <FaEye /> View
+                        </button>
+                      </Link>
+                      <button
+                        className={cssA + whiteHover}
+                        onClick={() => {
+                          handleDeleteHere(equipment._id);
+                        }}
                       >
-                        <FaEye /> &nbsp;View
-                      </NavLink>
+                        <FaTrash></FaTrash> Delete
+                      </button>
                     </td>
                   </tr>
                 ))}

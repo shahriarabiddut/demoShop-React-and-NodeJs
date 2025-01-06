@@ -5,7 +5,7 @@ import { FaCheck } from "react-icons/fa";
 
 const AboutUs = () => {
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 items-center justify-center gap-20 px-6 py-12 lg:px-16 bg-base-100">
+    <section className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 items-center justify-center gap-20 px-6 py-12 lg:px-16 bg-gray-300">
       <div className="flex flex-col gap-4 mb-16">
         <div className="relative">
           <img src={top} alt="Gymnastic" className="w-3/4 lg:w-4/5 h-auto " />

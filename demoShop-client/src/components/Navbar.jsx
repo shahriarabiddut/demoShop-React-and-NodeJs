@@ -7,8 +7,8 @@ import { AuthContext } from "../provider/AuthProvider";
 import { links } from "../utility/utility";
 import { FaMoon, FaSun } from "react-icons/fa";
 
-function Navbar({ toggleTheme, theme }) {
-  const { user, logOut } = useContext(AuthContext);
+function Navbar() {
+  const { user, logOut, toggleTheme, theme } = useContext(AuthContext);
   const [toggle, setToggle] = useState(false);
   const navLinks = links;
   return (

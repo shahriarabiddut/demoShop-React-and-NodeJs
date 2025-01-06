@@ -10,7 +10,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { activeCss, cssA, whiteHover } from "../utility/utility";
 
 const AllEquipments = () => {
-  const { showToast, user, loading } = useContext(AuthContext);
+  const { showToast, user, loading, theme } = useContext(AuthContext);
   const loadedEquipments = useLoaderData();
   const [equipments, setEquipments] = useState(loadedEquipments);
   const handleSort = (type) => {
@@ -55,7 +55,7 @@ const AllEquipments = () => {
             handleSort(parseInt(event.target.value, 10));
           }}
         >
-          <option disabled selected>
+          <option disabled defaultValue={"Default"}>
             Sort By Price
           </option>
           <option value="0">High To Low</option>
@@ -79,6 +79,7 @@ const AllEquipments = () => {
               key={equipment._id}
               equipment={equipment}
               equipments={equipments}
+              theme={theme}
             ></EquipmentHome>
           ))}
         </div>
