@@ -99,8 +99,8 @@ const Footer = () => {
       </section>
       <section className="bg-black p-5 mx-auto ">
         <p className="text-center text-white">
-          Copyright {new Date().getFullYear()} &copy; 2025 - All Rights Reserved
-          by EquiSports Ltd. Developed By
+          Copyright &copy;{new Date().getFullYear()} - All Rights Reserved by
+          EquiSports Ltd. Developed By &nbsp;
           <a
             href="https://shahriarahbiddut.web.app/"
             className="text-buttonBG font-rancho text-xl"
