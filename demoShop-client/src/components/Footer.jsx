@@ -9,7 +9,7 @@ const Footer = () => {
   const handleSub = (e) => {
     e.preventDefault();
     const form = e.target;
-    showToast("Thanks! We will be in Touch!", "success");
+    showToast("Thanks! We Will Contact You Soon!", "success");
     form.reset();
   };
   return (
@@ -18,7 +18,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mx-auto">
           <div className="logoAbout">
             <div className="flex gap-3">
-              <Link className="text-3xl font-bold font-rancho" to={"/"}>
+              <Link className="text-3xl font-bold font-rancho" to={`/`}>
                 EquiSports
               </Link>
             </div>
@@ -62,7 +62,7 @@ const Footer = () => {
               </li>
               <li className="mb-2">
                 <Link to={`/pages/about`} className="text-gray-100">
-                  About Us
+                  About
                 </Link>
               </li>
               <li className="mb-2">
@@ -72,7 +72,7 @@ const Footer = () => {
               </li>
               <li className="mb-2">
                 <Link to={`/pages/contact`} className="text-gray-100">
-                  Contact
+                  Contact Us
                 </Link>
               </li>
             </ul>
@@ -99,7 +99,15 @@ const Footer = () => {
       </section>
       <section className="bg-black p-5 mx-auto ">
         <p className="text-center text-white">
-          All Rights Reserved by @2024 EquiSports Ltd.
+          All Rights Reserved by {new Date().getFullYear()} &copy; EquiSports
+          Ltd. Developed By{" "}
+          <a
+            href="https://shahriarahbiddut.web.app/"
+            className="text-buttonBG font-rancho text-xl"
+          >
+            {" "}
+            Shahriar Ahmed Biddut
+          </a>
         </p>
       </section>
     </div>
