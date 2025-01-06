@@ -30,7 +30,7 @@ const Register = () => {
             const userDB = {
                 name,email,photo,createdAt
             };
-            fetch('http://localhost:5000/users',{
+            fetch('https://pha10-server.vercel.app/users',{
                 method:'POST',
                 headers:{
                     'content-type':'application/json'

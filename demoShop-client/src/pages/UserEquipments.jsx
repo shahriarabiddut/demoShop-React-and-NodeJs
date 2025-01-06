@@ -8,30 +8,33 @@ import PageSlogan from '../components/PageSlogan';
 import Pagination from '../components/Pagination';
 import { AuthContext } from '../provider/AuthProvider';
 import { activeCss, cssA, whiteHover } from '../utility/utility';
-import axios from 'axios';
 
 const UserEquipments = () => {
   const {showToast,user} = useContext(AuthContext);
   const [equipments,setEquipments] = useState([]);
   const [loader,setLoader] = useState(true);
   const email = user.email;
-  useEffect(() => {
-      axios.get(`http://localhost:5000/equipmentsUser2?email=${email}`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        console.log(response);
-        setEquipments(response.data);
+  useEffect(()=>{
+    // Email By
+    fetch('https://pha10-server.vercel.app/equipmentsUser', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json', 
+      },
+      body: JSON.stringify({ email }), 
+    })
+      .then((response) => response.json()) 
+      .then((data) => {
+        // console.log(data);
+        setEquipments(data);
       })
       .catch((error) => {
-        console.error(error);
+        console.error( error);
       });
+    //
+    setTimeout(()=>{setLoader(false)},1000)
   
-    setTimeout(() => {
-      setLoader(false);
-    }, 1000);
-  }, []);
-  
+  },[])
   
   const handleSort = () =>{
     const sortedList = [...equipments].sort((a,b) => b.price * 10 - a.price * 10 );

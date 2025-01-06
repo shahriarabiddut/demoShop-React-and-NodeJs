@@ -6,11 +6,18 @@ const links = [
     {
       id: "pages/shop",
       title: "All Sports Equipment",
+    },{
+      id: "pages/about",
+      title: "About",
+    },{
+      id: "pages/support",
+      title: "Support",
     },
     {
       id: "pages/contact",
       title: "Contact",
     },
+    
   ];
 
 const activeCss = " btn px-2 py-2 rounded-xl bg-orange-500 font-bold text-white border border-gray-200 ";

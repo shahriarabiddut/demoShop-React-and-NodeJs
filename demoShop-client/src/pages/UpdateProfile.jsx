@@ -19,7 +19,7 @@ const UpdateProfile = () => {
         // Proifle Update in MongoDB
         const updateData = {email:user.email,name,photo};
         //Updated User Info
-        fetch('http://localhost:5000/users',{
+        fetch('https://pha10-server.vercel.app/users',{
             method:'PATCH',
             headers:{
                 'content-type':'application/json'

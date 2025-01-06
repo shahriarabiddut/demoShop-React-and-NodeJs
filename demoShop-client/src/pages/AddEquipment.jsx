@@ -29,7 +29,7 @@ function AddEquipment() {
         const userEmail = form.userEmail.value;
         const userName = form.userName.value;
         const newEquipment = {image, itemName, categoryId, category, description, price, rating, customization, processingTime, stockStatus, soldQuantity, brand,userEmail,userName};
-        fetch('http://localhost:5000/equipments',{
+        fetch('https://pha10-server.vercel.app/equipments',{
              method:'POST',
              headers:{
                 'content-type':'application/json'

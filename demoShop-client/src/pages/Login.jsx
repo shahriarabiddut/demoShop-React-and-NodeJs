@@ -21,7 +21,7 @@ const Login = () => {
         const lastSignInTime = user.metadata.lastSignInTime;
         const signInInfo = {email,lastSignInTime};
         //Update sign In Info
-        fetch('http://localhost:5000/users',{
+        fetch('https://pha10-server.vercel.app/users',{
             method:'PATCH',
             headers:{
                 'content-type':'application/json'
@@ -33,7 +33,6 @@ const Login = () => {
             // console.log('Updated Sign in Time',data); 
             })
         //
-        
     }
     const handleSignInWithGoogle = ()=>{
         setError([]);
@@ -62,7 +61,7 @@ const Login = () => {
                 const userDB = {
                   name : currentUser.displayName,email : currentUser.email, photo : currentUser.photoURL,createdAt
                 };
-                fetch('http://localhost:5000/users',{
+                fetch('https://pha10-server.vercel.app/users',{
                     method:'POST',
                     headers:{
                         'content-type':'application/json'

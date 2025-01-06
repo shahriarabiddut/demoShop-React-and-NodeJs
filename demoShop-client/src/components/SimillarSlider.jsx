@@ -8,7 +8,7 @@ const SimillarSlider = ({categoryId}) => {
   const [loader,setLoader] = useState(true);
     useEffect(()=>{
         // Email By
-        fetch(`http://localhost:5000/equipments/simillar/${categoryId}`)
+        fetch(`https://pha10-server.vercel.app/equipments/simillar/${categoryId}`)
           .then((response) => response.json()) 
           .then((data) => {
             console.log(data);

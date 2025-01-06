@@ -3,7 +3,6 @@ import React, { createContext, useEffect, useState } from 'react';
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import app from "../firebase/firebase.config";
-import axios from "axios";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -53,30 +52,7 @@ const AuthProvider = ({children}) => {
         
     const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
         setUser(currentUser);
-        console.log('Status Captured : ',currentUser?.email);
-        if(currentUser?.email){
-          //JWT TOKEN Info
-          const userData = {email : currentUser.email}
-          axios.post('http://localhost:5000/jwt', userData,{withCredentials:true})
-            .then(function (response) {
-              console.log(response.data);
-              setLoading(false);
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        }else{
-          axios.post('http://localhost:5000/logout', {},{withCredentials:true})
-            .then(function (response) {
-              console.log('Logout ',response.data);
-              setLoading(false);
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        }
-        
-        
+        setLoading(false);
     })
     return () => {
         unsubscribe()

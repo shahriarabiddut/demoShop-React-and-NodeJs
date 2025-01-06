@@ -1,42 +1,14 @@
 require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express();
-const jwt = require('jsonwebtoken');
 const port = process.env.PORT || 5000;
-const secret = process.env.JWTSECRET || 'secret';
 
 // Middleware
-app.use(cors({
-  origin: 'http://localhost:5173', 
-  credentials: true,
-}));
+app.use(cors());
 app.use(express.json());
-app.use(cookieParser());
 
-const logger = (req,res,next)=>{
-  console.log('Inside the logger');
-  next();
-}
-const verifyToken = (req,res,next)=>{
-  console.log('Inside the verifyToken');
-  const token = req?.cookies?.token;
-  console.log(`Cookie:`, token); 
-  if(!token){
-    return res.status(401).send({message:'Unauthorized Access!'});
-  }
-  jwt.verify(token,secret,(err,decoded)=>{
-    if(err){
-      return res.status(401).send({message:'Unauthorized Access!'});
-    }
-    //
-    req.user = decoded;
-    // console.log(decoded);
-    next();
-  })
-}
 // MongoDB Starts 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@crudnodejs.33uff.mongodb.net/?retryWrites=true&w=majority&appName=crudNodeJs`;
 
@@ -52,32 +24,10 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // DB Collections
-    const userCollection = client.db("jwttest").collection("users");
-    const categoryCollection = client.db("jwttest").collection("category");
-    const equipmentCollection = client.db("jwttest").collection("equipments");
-    const testimonialCollection = client.db("jwttest").collection("testimonial");
-    //
-    // Auth Related
-    // Login Token
-    app.post('/jwt',async (req,res)=>{
-      const user = req.body;
-      const token = jwt.sign(user, secret, { expiresIn: '1h' });
-      res
-      .cookie('token',token,{
-        httpOnly:true,
-        secure:false,
-      })
-      .send({success:true});
-    })
-    // Logout Clear Token
-    app.post('/logout', async(req,res)=>{
-      res
-      .clearCookie('token',{
-        httpOnly:true,
-        secure:false
-      })
-      .send({success:true});
-    })
+    const userCollection = client.db("pha10").collection("users");
+    const categoryCollection = client.db("pha10").collection("category");
+    const equipmentCollection = client.db("pha10").collection("equipments");
+    const testimonialCollection = client.db("pha10").collection("testimonial");
     // Routes GET ... POST ... PATCH/PUT ... DELETE
     //User Routes
     //Get All Users
@@ -229,28 +179,9 @@ async function run() {
       const cursor = equipmentCollection.find({ userEmail:email });
       const result = await cursor.toArray();
       console.log(`All User Equipment Fetched!`);
-      console.log(`Coockie :`,req.cookies);
       // console.log(result);
       res.send(result);
     });
-    // Using Query Url 
-    app.get('/equipmentsUser2',logger,verifyToken, async (req, res) => {
-      const { email } = req.query; 
-      if (!email) {
-        return res.status(400).send({ error: 'Email is required' });
-      }
-      if(req.user.email !== req.query.email){
-        return res.status(403).send({message:'Forbidden Access!'});
-      }
-      const cursor = equipmentCollection.find({ userEmail: email });
-      const result = await cursor.toArray();
-    
-      console.log('Inside the API');
-      console.log(`All User Equipment Fetched!`);
-    
-      res.send(result);
-    });
-    
     //Delete Equipment
     app.delete('/equipments/:id',async (req,res)=>{
       const id = req.params.id;
@@ -270,4 +201,4 @@ run().catch(console.dir);
 
 // Initial Setup
 app.get('/', (req,res)=>{res.send(`PHA10 Server is Running!`)})
-app.listen(port, ()=>{console.log(`PHA10 Server is Running on Port : ${port} and Secret : ${secret}`)})
+app.listen(port, ()=>{console.log(`PHA10 Server is Running on Port : ${port}`)})

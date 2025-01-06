@@ -10,7 +10,7 @@ const SportsCategory = ({equipments,topSlogan,title,category}) => {
     const handleCategoryBtn = (id)=>{
       if(id==0){setProducts(equipments)} 
       else{
-        fetch(`http://localhost:5000/equipmentsSameCategory/${id}`).then(res=>res.json()).then(data=>{setProducts(data);});
+        fetch(`https://pha10-server.vercel.app/equipmentsSameCategory/${id}`).then(res=>res.json()).then(data=>{setProducts(data);});
       }
         setSelectedCategory(id);
     }

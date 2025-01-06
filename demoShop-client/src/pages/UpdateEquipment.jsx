@@ -17,7 +17,7 @@ function UpdateEquipment() {
   const [ eCategoryId,seteCategoryId] = useState(categoryId);
   useEffect(()=>{
     
-    fetch('http://localhost:5000/category')
+    fetch('https://pha10-server.vercel.app/category')
     .then((response) => response.json()) 
     .then((data) => {
       console.log(data);
@@ -46,7 +46,7 @@ function UpdateEquipment() {
           showToast("You don't Have Permission",'error');
           navigate('/equipments/myEquipments');
         }else{
-        fetch(`http://localhost:5000/equipments/${_id}`,{
+        fetch(`https://pha10-server.vercel.app/equipments/${_id}`,{
              method:'PUT',
              headers:{
                 'content-type':'application/json'
