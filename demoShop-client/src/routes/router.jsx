@@ -127,8 +127,7 @@ const router = createBrowserRouter([
         path: "/equipments/myEquipments",
         element: (
           <PrivateRoute>
-            {" "}
-            <UserEquipments />{" "}
+            <UserEquipments />
           </PrivateRoute>
         ),
       },
@@ -136,8 +135,7 @@ const router = createBrowserRouter([
         path: "/equipments/add",
         element: (
           <PrivateRoute>
-            {" "}
-            <AddEquipment />{" "}
+            <AddEquipment />
           </PrivateRoute>
         ),
         loader: () => fetch("https://pha10-server.vercel.app/category"),
@@ -146,8 +144,7 @@ const router = createBrowserRouter([
         path: "/equipments/update/:id",
         element: (
           <PrivateRoute>
-            {" "}
-            <UpdateEquipment />{" "}
+            <UpdateEquipment />
           </PrivateRoute>
         ),
         loader: ({ params }) =>
@@ -155,12 +152,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/equipments/:id",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <ViewEquipment />{" "}
-          </PrivateRoute>
-        ),
+        element: <ViewEquipment />,
         loader: ({ params }) =>
           fetch(`https://pha10-server.vercel.app/equipments/${params.id}`),
       },
