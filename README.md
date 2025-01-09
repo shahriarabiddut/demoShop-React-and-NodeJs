@@ -30,10 +30,6 @@ Our platform focuses on delivering a responsive and user-friendly interface wher
 
 The EquiSports platform aims to become the go-to destination for athletes of all levels by providing a comprehensive and reliable source for sports equipment. With features designed to cater to both buyers and sellers, we aspire to build a community that fosters growth, performance, and accessibility in sports.  
 
-
-Let us know if you’d like any additional sections or features explained in greater detail!  
-
-
 ## Technology Stack
 
 ### Frontend (Query-Client)
@@ -121,7 +117,7 @@ Let us know if you’d like any additional sections or features explained in gre
 4. **Start the backend server:**
 -   `npm run start` or install nodemon globally!
 5. **Verify the server is running:**
-The backend server will be accessible at http://localhost:5000 (http://localhost:portnamber)
+The backend server will be accessible at http://localhost:5000 or (http://localhost:port)
 
 # Website
 -   EquiSports: A Sports Equipment Store  
