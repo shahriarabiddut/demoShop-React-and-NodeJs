@@ -32,11 +32,11 @@ The EquiSports platform aims to become the go-to destination for athletes of all
 
 ## Technology Stack
 
-### Frontend (Query-Client)
+### Frontend (EquiSports-Client)
 - **React**: Framework for building the platform’s user interface.
 - **DaisyUI & Tailwind CSS**: Tools for creating a responsive and visually appealing design.
 
-### Backend (Query-Server)
+### Backend (EquiSports-Server)
 - **Node.js**: Manages server-side logic and API interactions.
 
 ### Database
@@ -48,7 +48,7 @@ The EquiSports platform aims to become the go-to destination for athletes of all
 
 ## Dependencies
 
-### Client Side (Query-Client)
+### Client Side (EquiSports-Client)
 #### **Dependencies**
 -   "@emotion/react": "^11.13.5",
 -   "firebase": "^11.0.2",
@@ -84,7 +84,7 @@ The EquiSports platform aims to become the go-to destination for athletes of all
 -   "vite": "^6.0.1"
 
 
-### Server Side (Query-Server)
+### Server Side (EquiSports-Server)
 #### **Dependencies**
 - `cors`: ^2.8.5
 - `dotenv`: ^16.4.7
@@ -94,9 +94,9 @@ The EquiSports platform aims to become the go-to destination for athletes of all
 
 ## Instructions for Running the Project Locally
 
-### Frontend (Query-Client)
-1. **Navigate to the `query-client` folder:**
--   `cd query-client`
+### Frontend (EquiSports-Client)
+1. **Navigate to the `demoShop-client` folder:**
+-   `cd demoShop-client`
 2. **Install the dependencies:**
 -   `npm install`
 3. **Create/Replace .env.local (Rename .env.example to .env.local ):**
@@ -106,14 +106,14 @@ The EquiSports platform aims to become the go-to destination for athletes of all
 5. **Access the application:**
 -   Open your browser and navigate to `http://localhost:5173`.
 
-### Backend (Query-Server)
-1.* Navigate to the query-server folder:*
--   `cd query-server`
+### Backend (EquiSports-Server)
+1.* Navigate to the demoShop-server folder:*
+-   `cd demoShop-server`
 
 2. **Install the dependencies:**
 -   `npm install`
 3. **Set up environment variables:**
--   Create a .env file in the query-server directory.Add your Credentials Here. simillar to .env.example.
+-   Create a .env file in the demoShop-server directory.Add your Credentials Here. simillar to .env.example.
 4. **Start the backend server:**
 -   `npm run start` or install nodemon globally!
 5. **Verify the server is running:**
