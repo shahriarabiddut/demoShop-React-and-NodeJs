@@ -4,7 +4,6 @@ Welcome to the **EquiSports Project**, an e-commerce platform designed to provid
 
 Our platform focuses on delivering a responsive and user-friendly interface where customers can browse, purchase, and review products effortlessly. Equipped with advanced features like user authentication and an efficient product management system, EquiSports ensures a secure and smooth shopping experience for everyone.  
 
----
 
 ## Key Features  
 
@@ -26,17 +25,14 @@ Our platform focuses on delivering a responsive and user-friendly interface wher
 6. **Dark/Light Mode**  
    - A theme toggle feature on the home page allows users to switch between dark and light modes for a personalized experience.  
 
----
 
 ## Vision  
 
 The EquiSports platform aims to become the go-to destination for athletes of all levels by providing a comprehensive and reliable source for sports equipment. With features designed to cater to both buyers and sellers, we aspire to build a community that fosters growth, performance, and accessibility in sports.  
 
----
 
 Let us know if you’d like any additional sections or features explained in greater detail!  
 
----
 
 ## Technology Stack
 
@@ -53,7 +49,6 @@ Let us know if you’d like any additional sections or features explained in gre
 ### State Management
 - **Context API**: Ensures smooth and consistent state management across the application.
 
----
 
 ## Dependencies
 
@@ -92,7 +87,6 @@ Let us know if you’d like any additional sections or features explained in gre
 -   "tailwindcss": "^3.4.16",
 -   "vite": "^6.0.1"
 
----
 
 ### Server Side (Query-Server)
 #### **Dependencies**
@@ -101,7 +95,6 @@ Let us know if you’d like any additional sections or features explained in gre
 - `express`: ^4.21.1
 - `mongodb`: ^6.11.0
 
----
 
 ## Instructions for Running the Project Locally
 
@@ -131,6 +124,8 @@ Let us know if you’d like any additional sections or features explained in gre
 The backend server will be accessible at http://localhost:5000 (http://localhost:portnamber)
 
 # Website
--   Product Recommendation System
+-   EquiSports: A Sports Equipment Store  
 -   Live Site Link : https://progheroa10.web.app
+-   Screenshot
+
 ![Application Screenshot](/screenshot.png)
